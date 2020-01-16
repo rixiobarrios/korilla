@@ -47,17 +47,44 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      receipts: receipts
+      receipts: receipts,
+      searchString: ""
       // receipt1: receipt1,
       // receipt2: receipt2,
       // receipt3: receipt3
     };
   }
 
+  handleChange = event => {
+    this.setState({ [event.target.id]: event.target.value });
+    this.handleSubmit();
+  };
+
+  handleSubmit = event => {
+    this.setState({ receipts }, () =>
+      this.setState({
+        receipts: this.state.receipts.filter(receipt =>
+          receipt.person
+            .toLowerCase()
+            .includes(this.state.searchString.toLowerCase())
+        )
+      })
+    );
+  };
+
   render() {
     return (
       <div>
         <h1 className="truck-name">Korilla</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            id="searchString"
+            placeholder="search"
+            value={this.state.searchString}
+            onChange={this.handleChange}
+          />
+        </form>
         <div className="container">
           {/* {!this.state.receipt1.paid && (
             <Receipt receipt={this.state.receipt1} />
