@@ -8,3 +8,7 @@
 span {
   color: indigo;
 }
+
+.container {
+  align-items: flex-start;
+}
