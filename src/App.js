@@ -13,7 +13,7 @@ const receipt1 = {
     drink: "Korchata",
     cost: 22
   },
-  paid: true
+  paid: false
 };
 const receipt2 = {
   person: "Jerrica",
@@ -41,14 +41,16 @@ const receipt3 = {
   },
   paid: false
 };
+const receipts = [receipt1, receipt2, receipt3];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      receipt1: receipt1,
-      receipt2: receipt2,
-      receipt3: receipt3
+      receipts: receipts
+      // receipt1: receipt1,
+      // receipt2: receipt2,
+      // receipt3: receipt3
     };
   }
 
@@ -57,7 +59,7 @@ class App extends React.Component {
       <div>
         <h1 className="truck-name">Korilla</h1>
         <div className="container">
-          {!this.state.receipt1.paid && (
+          {/* {!this.state.receipt1.paid && (
             <Receipt receipt={this.state.receipt1} />
           )}
           {!this.state.receipt2.paid && (
@@ -65,7 +67,12 @@ class App extends React.Component {
           )}
           {!this.state.receipt2.paid && (
             <Receipt receipt={this.state.receipt3} />
-          )}
+          )} */}
+          {this.state.receipts
+            .filter(receipt => !receipt.paid)
+            .map(receipt => (
+              <Receipt receipt={receipt} key={receipt.person} />
+            ))}
         </div>
       </div>
     );

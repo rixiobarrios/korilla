@@ -37,15 +37,4 @@ class Receipts extends Component {
   }
 }
 
-//Make a Receipt component that renders the following data from the first receipt:
-
-// person
-// order
-// main
-// protein
-// rice
-// sauce
-// drink
-// cost
-
 export default Receipts;
